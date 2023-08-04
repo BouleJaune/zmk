@@ -1,3 +1,10 @@
+# My ZMK Fork 
+Just added a docker-compose file to facilitate build and flash
+To use : 
+docker compose build-left (or right), you need to have the MCU in bootloader mode.
+
+And my zmk-config is there as a submodule. 
+
 # Zephyr™ Mechanical Keyboard (ZMK) Firmware
 
 [![Discord](https://img.shields.io/discord/719497620560543766)](https://zmk.dev/community/discord/invite)
