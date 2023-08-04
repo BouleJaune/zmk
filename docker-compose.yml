@@ -1,0 +1,64 @@
+---
+version: "3.9"
+services:
+
+    build-left:
+        ports:
+            - 3000
+        build:
+            context: .devcontainer/
+            dockerfile: Dockerfile
+        volumes:
+            - $PWD:/workspace
+            - zmk-root-user:/root
+            - zmk-zephyr:/workspace/zephyr
+            - zmk-zephyr-modules:/workspace/modules
+            - zmk-zephyr-tools:/workspace/tools
+            - zmk-flash-left:/mnt
+        entrypoint: /workspace/build-left.sh
+
+    build-right:
+        ports:
+            - 3000
+        build:
+            context: .devcontainer/
+            dockerfile: Dockerfile
+        volumes:
+            - $PWD:/workspace
+            - zmk-root-user:/root
+            - zmk-zephyr:/workspace/zephyr
+            - zmk-zephyr-modules:/workspace/modules
+            - zmk-zephyr-tools:/workspace/tools
+            - zmk-flash-right:/mnt
+        entrypoint: /workspace/build-right.sh
+
+    shell:
+        profiles: ["troubleshooting"]
+        ports:
+            - 3000
+        build:
+            context: .devcontainer/
+            dockerfile: Dockerfile
+        volumes:
+            - $PWD:/workspace
+            - zmk-root-user:/root
+            - zmk-zephyr:/workspace/zephyr
+            - zmk-zephyr-modules:/workspace/modules
+            - zmk-zephyr-tools:/workspace/tools
+        entrypoint: ["bash"]
+
+volumes:
+    zmk-root-user:
+    zmk-zephyr:
+    zmk-zephyr-modules:
+    zmk-zephyr-tools:
+    zmk-flash-left:
+        driver: local
+        driver_opts:
+            device: /dev/disk/by-uuid/0042-0042
+            type: vfat
+    zmk-flash-right:
+        driver: local
+        driver_opts:
+            device: /dev/disk/by-uuid/0042-0042
+            type: vfat
