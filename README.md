@@ -1,7 +1,7 @@
 # My ZMK Fork 
 Just added a docker-compose file to facilitate build and flash
 To use : 
-docker compose build-left (or right), you need to have the MCU in bootloader mode.
+docker compose up build-left (or right), you need to have the MCU in bootloader mode.
 
 And my zmk-config is there as a submodule. 
 
